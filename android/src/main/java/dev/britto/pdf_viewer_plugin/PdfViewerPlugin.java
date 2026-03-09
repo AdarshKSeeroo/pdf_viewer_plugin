@@ -8,15 +8,6 @@ public class PdfViewerPlugin implements FlutterPlugin {
   public PdfViewerPlugin() {
   }
 
-  @SuppressWarnings("deprecation")
-  public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
-    registrar
-        .platformViewRegistry()
-        .registerViewFactory(
-            "pdf_viewer_plugin",
-            new PdfViewerFactory(registrar.messenger()));
-  }
-
   @Override
   public void onAttachedToEngine(FlutterPluginBinding binding) {
     BinaryMessenger messenger = binding.getBinaryMessenger();
