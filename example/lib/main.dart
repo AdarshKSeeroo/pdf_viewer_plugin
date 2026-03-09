@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,17 +17,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final sampleUrl = 'http://www.africau.edu/images/default/sample.pdf';
+  final sampleUrl = 'https://pdfobject.com/pdf/sample.pdf';
 
   String? pdfFlePath;
 
   Future<String> downloadAndSavePdf() async {
     final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/sample.pdf');
+    final file = File('${directory.path}/sample-${1}.pdf');
+
     if (await file.exists()) {
+      log("response is ${file.path}");
       return file.path;
     }
     final response = await http.get(Uri.parse(sampleUrl));
+    log("response is ${response.body}");
     await file.writeAsBytes(response.bodyBytes);
     return file.path;
   }

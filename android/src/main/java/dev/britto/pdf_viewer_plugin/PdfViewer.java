@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-
 import java.io.File;
 import java.util.Map;
 
@@ -49,10 +47,9 @@ public class PdfViewer implements PlatformView, MethodCallHandler {
     private String filePath;
 
     PdfViewer(final Context context,
-              MethodChannel methodChannel,
-              Map<String, Object> params,
-              View containerView) {
-//        Log.i("PdfViewer", "init");
+            MethodChannel methodChannel,
+            Map<String, Object> params) {
+        // Log.i("PdfViewer", "init");
 
         this.methodChannel = methodChannel;
         this.methodChannel.setMethodCallHandler(this);
@@ -60,7 +57,7 @@ public class PdfViewer implements PlatformView, MethodCallHandler {
         if (!params.containsKey("filePath")) {
             return;
         }
-        filePath = (String)params.get("filePath");
+        filePath = (String) params.get("filePath");
 
         pdfView = new CustomPDFView(context, null);
         loadPdfView();
@@ -89,20 +86,9 @@ public class PdfViewer implements PlatformView, MethodCallHandler {
         return pdfView;
     }
 
-     @Override
-    public void onFlutterViewAttached(@NonNull View flutterView) {
-//         Log.i("PdfViewer", "onFlutterViewAttached");
-    }
-
-    @Override
-    public void onFlutterViewDetached() {
-//        Log.i("PdfViewer", "onFlutterViewDetached");
-    }
-
-
     @Override
     public void dispose() {
-//        Log.i("PdfViewer", "dispose");
+        // Log.i("PdfViewer", "dispose");
         methodChannel.setMethodCallHandler(null);
     }
 }
