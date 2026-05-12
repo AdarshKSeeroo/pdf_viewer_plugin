@@ -2,20 +2,23 @@ group 'dev.britto.pdf_viewer_plugin'
 version '1.0'
 
 buildscript {
+    ext {
+        agp_version = '9.0.0'
+    }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "com.android.tools.build:gradle:$agp_version"
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -23,14 +26,14 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'dev.britto.pdf_viewer_plugin'
-    compileSdkVersion 34
+    compileSdkVersion 36
 
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 20
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -39,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.3'
 
 }
